@@ -265,3 +265,65 @@ struct ERC721Data {
 }
 
 using LibERC721Data for ERC721Data global;
+
+abstract contract TrillyERC721 {
+    function name() external view returns (string memory) {
+        return ts.erc721().name;
+    }
+
+    function symbol() external view returns (string memory) {
+        return ts.erc721().symbol;
+    }
+
+    function balanceOf(address owner) external view returns (uint256) {
+        return ts.erc721().balanceOf(owner);
+    }
+
+    function ownerOf(uint256 tokenId) external view returns (address) {
+        return ts.erc721().ownerOf(tokenId);
+    }
+
+    function getApproved(uint256 tokenId) external view returns (address) {
+        return ts.erc721().getApproved(tokenId);
+    }
+
+    function isApprovedForAll(address owner, address operator) external view returns (bool) {
+        return ts.erc721().isApprovedForAll(owner, operator);
+    }
+
+    function transferFrom(address from, address to, uint256 tokenId) external {
+        ts.erc721().transferFrom(msg.sender, from, to, tokenId);
+    }
+
+    function safeTransferFrom(address from, address to, uint256 tokenId) external {
+        ts.erc721().safeTransferFrom(msg.sender, from, to, tokenId);
+    }
+
+    function safeTransferFrom(address from, address to, uint256 tokenId, bytes calldata data) external {
+        ts.erc721().safeTransferFrom(msg.sender, from, to, tokenId, data);
+    }
+
+    function approve(address approved, uint256 tokenId) external {
+        ts.erc721().approve(msg.sender, approved, tokenId);
+    }
+
+    function setApprovalForAll(address operator, bool approved) external {
+        ts.erc721().setApprovalForAll(msg.sender, operator, approved);
+    }
+
+    function tokenURI(uint256 tokenId) external view returns (string memory) {
+        return ts.erc721().tokenURI(tokenId);
+    }
+
+    function totalSupply() external view returns (uint256) {
+        return ts.erc721().totalSupply();
+    }
+
+    function tokenByIndex(uint256 index) external view returns (uint256) {
+        return ts.erc721().tokenByIndex(index);
+    }
+
+    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256) {
+        return ts.erc721().tokenOfOwnerByIndex(owner, index);
+    }
+}
