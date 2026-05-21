@@ -27,14 +27,14 @@ library ts {
         }
     }
 
-    function erc721() internal pure returns (ERC165Data storage s) {
+    function erc721() internal pure returns (ERC721Data storage s) {
         bytes32 position = ERC721_STORAGE_POSITION;
         assembly {
             s.slot := position
         }
     }
 
-    function erc1155() internal pure returns (ERC165Data storage s) {
+    function erc1155() internal pure returns (ERC1155Data storage s) {
         bytes32 position = ERC1155_STORAGE_POSITION;
         assembly {
             s.slot := position
