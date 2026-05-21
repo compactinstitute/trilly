@@ -2,6 +2,7 @@
 pragma solidity ^0.8.22;
 
 import {ts} from "src/main.sol";
+import {TrillyERC165} from "src/erc165.sol";
 
 event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);
 event TransferBatch(
@@ -170,7 +171,7 @@ library LibERC1155Data {
         string memory idHex = _toHexString(id, 64);
         bytes memory idHexBytes = bytes(idHex);
 
-        bytes memory result = new bytes(baseBytes.length - 3 + idHexBytes.length);
+        bytes memory result = new bytes(baseBytes.length - 4 + idHexBytes.length);
 
         uint256 i = 0;
         for (; i < idPos; ++i) {
@@ -179,8 +180,8 @@ library LibERC1155Data {
         for (uint256 j = 0; j < idHexBytes.length; ++j) {
             result[i + j] = idHexBytes[j];
         }
-        for (uint256 j = idPos + 3; j < baseBytes.length; ++j) {
-            result[i + idHexBytes.length + j - idPos - 3] = baseBytes[j];
+        for (uint256 j = idPos + 4; j < baseBytes.length; ++j) {
+            result[i + idHexBytes.length + j - idPos - 4] = baseBytes[j];
         }
 
         return string(result);
@@ -271,7 +272,7 @@ struct ERC1155Data {
 
 using LibERC1155Data for ERC1155Data global;
 
-abstract contract TrillyERC1155 {
+abstract contract TrillyERC1155 is TrillyERC165 {
     function balanceOf(address owner, uint256 id) external view returns (uint256) {
         return ts.erc1155().balanceOf(owner, id);
     }

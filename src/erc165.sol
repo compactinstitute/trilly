@@ -22,3 +22,19 @@ struct ERC165Data {
 }
 
 using LibERC165Data for ERC165Data global;
+bytes32 constant ERC165_STORAGE_POSITION = keccak256("trilly.erc165");
+
+function erc165() pure returns (ERC165Data storage s) {
+    bytes32 position = ERC165_STORAGE_POSITION;
+    assembly {
+        s.slot := position
+    }
+}
+
+abstract contract TrillyERC165 {
+    bytes32 private constant _ERC165_SLOT = keccak256("trilly.erc165");
+
+    function supportsInterface(bytes4 interfaceId) external view returns (bool) {
+        return erc165().supportsInterface(interfaceId);
+    }
+}

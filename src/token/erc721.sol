@@ -2,6 +2,7 @@
 pragma solidity ^0.8.22;
 
 import {ts} from "src/main.sol";
+import {TrillyERC165} from "src/erc165.sol";
 
 event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
@@ -266,7 +267,7 @@ struct ERC721Data {
 
 using LibERC721Data for ERC721Data global;
 
-abstract contract TrillyERC721 {
+abstract contract TrillyERC721 is TrillyERC165 {
     function name() external view returns (string memory) {
         return ts.erc721().name;
     }
