@@ -24,7 +24,7 @@ your responsibility as a developer to expose the functions you want, while
 inheritance handles this for you - though with slightly less freedom. The two
 patterns are shown below.
 
-```sol
+```java
 import {ts} from "trilly/main.sol";
 import {TrillyERC20} from "trilly/token/erc20.sol"
 
