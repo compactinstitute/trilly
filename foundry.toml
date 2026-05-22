@@ -3,5 +3,7 @@ src = "src"
 out = "out"
 libs = ["node_modules", "lib"]
 gas_reports = ["*"]
+optimizer = true
+optimizer_runs = 200
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
