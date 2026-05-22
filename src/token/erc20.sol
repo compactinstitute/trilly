@@ -90,39 +90,39 @@ struct ERC20Data {
 using LibERC20Data for ERC20Data global;
 
 abstract contract TrillyERC20 {
-    function name() external view returns (string memory) {
+    function name() external view virtual returns (string memory) {
         return ts.erc20().name;
     }
 
-    function symbol() external view returns (string memory) {
+    function symbol() external view virtual returns (string memory) {
         return ts.erc20().symbol;
     }
 
-    function decimals() external view returns (uint8) {
+    function decimals() external view virtual returns (uint8) {
         return ts.erc20().decimals();
     }
 
-    function totalSupply() external view returns (uint256) {
+    function totalSupply() external view virtual returns (uint256) {
         return ts.erc20().totalSupply();
     }
 
-    function balanceOf(address account) external view returns (uint256) {
+    function balanceOf(address account) external view virtual returns (uint256) {
         return ts.erc20().balanceOf(account);
     }
 
-    function transfer(address recipient, uint256 amount) external returns (bool) {
+    function transfer(address recipient, uint256 amount) external virtual returns (bool) {
         return ts.erc20().transfer(msg.sender, recipient, amount);
     }
 
-    function allowance(address owner, address spender) external view returns (uint256) {
+    function allowance(address owner, address spender) external view virtual returns (uint256) {
         return ts.erc20().allowance(owner, spender);
     }
 
-    function approve(address spender, uint256 amount) external returns (bool) {
+    function approve(address spender, uint256 amount) external virtual returns (bool) {
         return ts.erc20().approve(msg.sender, spender, amount);
     }
 
-    function transferFrom(address sender, address recipient, uint256 amount) external returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) external virtual returns (bool) {
         return ts.erc20().transferFrom(msg.sender, sender, recipient, amount);
     }
 }
