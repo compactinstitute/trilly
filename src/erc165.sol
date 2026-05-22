@@ -34,7 +34,7 @@ function erc165() pure returns (ERC165Data storage s) {
 abstract contract TrillyERC165 {
     bytes32 private constant _ERC165_SLOT = keccak256("trilly.erc165");
 
-    function supportsInterface(bytes4 interfaceId) external view returns (bool) {
+    function supportsInterface(bytes4 interfaceId) external view virtual returns (bool) {
         return erc165().supportsInterface(interfaceId);
     }
 }

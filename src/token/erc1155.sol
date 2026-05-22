@@ -273,19 +273,23 @@ struct ERC1155Data {
 using LibERC1155Data for ERC1155Data global;
 
 abstract contract TrillyERC1155 is TrillyERC165 {
-    function balanceOf(address owner, uint256 id) external view returns (uint256) {
+    function balanceOf(address owner, uint256 id) external view virtual returns (uint256) {
         return ts.erc1155().balanceOf(owner, id);
     }
 
     function balanceOfBatch(address[] calldata owners, uint256[] calldata ids)
         external
         view
+        virtual
         returns (uint256[] memory)
     {
         return ts.erc1155().balanceOfBatch(owners, ids);
     }
 
-    function safeTransferFrom(address from, address to, uint256 id, uint256 value, bytes calldata data) external {
+    function safeTransferFrom(address from, address to, uint256 id, uint256 value, bytes calldata data)
+        external
+        virtual
+    {
         ts.erc1155().safeTransferFrom(msg.sender, from, to, id, value, data);
     }
 
@@ -295,19 +299,19 @@ abstract contract TrillyERC1155 is TrillyERC165 {
         uint256[] calldata ids,
         uint256[] calldata values,
         bytes calldata data
-    ) external {
+    ) external virtual {
         ts.erc1155().safeBatchTransferFrom(msg.sender, from, to, ids, values, data);
     }
 
-    function setApprovalForAll(address operator, bool approved) external {
+    function setApprovalForAll(address operator, bool approved) external virtual {
         ts.erc1155().setApprovalForAll(msg.sender, operator, approved);
     }
 
-    function isApprovedForAll(address owner, address operator) external view returns (bool) {
+    function isApprovedForAll(address owner, address operator) external view virtual returns (bool) {
         return ts.erc1155().isApprovedForAll(owner, operator);
     }
 
-    function uri(uint256 id) external view returns (string memory) {
+    function uri(uint256 id) external view virtual returns (string memory) {
         return ts.erc1155().uri(id);
     }
 }
